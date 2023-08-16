@@ -1,11 +1,19 @@
-program recursividad;
-function potencia (b, e: integer): integer;
+program CalculoDePotencia;
+function potencia(base, exp: integer): integer;
 begin
-    if e = 0 then
+    if (exp = 0) then
         potencia := 1
-    else if e > 0 then
-        potencia := b * potencia(b, e-1);
+    else
+        potencia := base * potencia(base, exp-1)
 end;
+{PROGRAMA PRINCIPAL}
+var
+    n, x: integer;
 begin
-    writeln(potencia(2, 4))
+    write ('Ingrese base: ');
+    Readln (n);
+    write ('Ingrese exponente: ');
+    Readln (x);
+    writeln(potencia(n, x));
+    readln;
 end.
