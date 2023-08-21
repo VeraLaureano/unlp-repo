@@ -1,7 +1,7 @@
 program VectorOrdenado;
 
 const
-    dimF = 8;  {Dimensión física del vector}
+    dimF = 8;  {Dimensiï¿½n fï¿½sica del vector}
 
 type
 
@@ -52,6 +52,26 @@ begin
      writeln;
      writeln;
 End;
+
+{-----------------------------------------------------------------------------
+BUSQUEDA BINARIA RECURSIVA }
+function busquedaBinariaRecursiva(valor, inicio, fin: Integer; arr: vector): Integer;
+var
+    medio: Integer;
+begin
+    if inicio > fin then
+        busquedaBinariaRecursiva := -1
+    else
+    begin
+        medio := (inicio + fin) div 2;
+        if (arr[medio] = valor) then
+            busquedaBinariaRecursiva := medio
+        else if (arr[medio] > valor) then
+            busquedaBinariaRecursiva := busquedaBinariaRecursiva(valor, inicio, medio - 1, arr)
+        else
+            busquedaBinariaRecursiva := busquedaBinariaRecursiva(valor, medio + 1, fin, arr)
+    end
+end;
 
 {PROGRAMA PRINCIPAL}
 var
