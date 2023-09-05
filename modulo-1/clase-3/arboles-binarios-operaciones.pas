@@ -77,3 +77,55 @@ begin
     else
         varMax := nodo^.dato
 end;
+
+procedure verValoresEnRango(a: arbol; min, max: integer);
+begin
+    if a <> nil then
+    begin
+        if (a^.dato >= min) and (a^.dato <= max);
+        verValoresEnRango(a^.hi, min, max);
+        verValoresEnRango(a^.hd, min, max)
+    end
+end;
+
+procedure borrarElemento(var a: arbol; valor: integer);
+var 
+    aux: arbol;
+begin
+    if a <> nil then
+    begin
+        if (a^.dato > valor) then
+            borrarElemento(a^.hi, valor)
+        else if (a^.dato < valor) then
+            borrarElemento(a^.hd, valor)
+        else
+        begin
+            if (a^.hi = nil) and (a^.hd = nil) then
+            begin
+                dispose(a);
+                a := nil
+            end
+            else if (a^.hi = nil) then
+            begin 
+                aux := a;
+                a := a^.hd;
+                dispose(aux)
+            end
+            else if (a^.hd = nil) then
+            begin
+                aux := a;
+                a := a^.hi;
+                dispose(aux)
+            end
+            else 
+            begin
+                aux := a;
+                a := a^.hd;
+                while (aux^.hi <> nil) do
+                    aux := aux^.hi;
+                a^.dato := a^.dato;
+                borrarElemento(a^.hd, aux^.dato)
+            end
+        end
+    end
+end;
