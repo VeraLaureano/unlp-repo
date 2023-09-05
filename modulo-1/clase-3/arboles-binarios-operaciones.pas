@@ -58,16 +58,6 @@ begin
         buscar := buscar(nodo^.hd, valor)
 end;
 
-function varMax(nodo: arbol): integer;
-begin
-    if nodo = nil then
-        varMax := -1
-    else if (nodo^.hd <> nil) then
-        varMax := varMax(nodo^.hd)
-    else
-        varMax := nodo^.dato
-end;
-
 function varMin(nodo: arbol): integer;
 begin
     if nodo = nil then
@@ -76,4 +66,14 @@ begin
         varMin := varMax(nodo^.hd)
     else
         varMin := nodo^.dato
+end;
+
+function varMax(nodo: arbol): integer;
+begin
+    if nodo = nil then
+        varMax := -1
+    else if (nodo^.hd <> nil) then
+        varMax := varMax(nodo^.hd)
+    else
+        varMax := nodo^.dato
 end;
